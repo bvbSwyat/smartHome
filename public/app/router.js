@@ -3,8 +3,7 @@
 
 
     angular.module("mainApp")
-        .config(function($stateProvider, $locationProvider){
-
+        .config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
             $stateProvider
 
@@ -48,7 +47,8 @@
                       controller: 'CardListController',
                       controllerAs: '$cardList',
                       templateUrl: 'dist/templates/card.list/card.list.html'
-                  })
+                  });
 
+            $urlRouterProvider.otherwise('/login');
         })
 })();

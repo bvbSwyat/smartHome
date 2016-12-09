@@ -1,13 +1,10 @@
 <div class="user-group">
   <div class="user-list">
-    <div class="title"><h2>User`s groups</h2></div>
+    <div class="title"><h2>Groups</h2></div>
     <ul class="list-group">
-      <li class="list-group-item">
-        First item</li>
-      <li class="list-group-item">
-        First item</li>
-      <li class="list-group-item">
-        First item</li>
+      <li class="list-group-item"
+          ng-repeat="group in $userGroup.groups">
+        {{group}}</li>
     </ul>
   </div>
   <div class="create-group-block">
@@ -22,27 +19,14 @@
 
       </div>
 
-      <li class="list-group-item">
+      <li class="list-group-item"
+          ng-repeat="user in $userGroup.users">
 
-        <input type="checkbox">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
-
-      </li>
-      <li class="list-group-item">
-
-        <input type="checkbox">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
+        <input type="checkbox" ng-model="user.isAdded">
+        {{user.name}}
 
       </li>
-      <li class="list-group-item">
 
-        <input type="checkbox">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
-
-      </li>
 
       <div class="group-name text-center">
 
