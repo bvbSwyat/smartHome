@@ -32,11 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-
-
   'post /auth/sign_up': {
         controller: 'auth',
         action: 'sign_up'
@@ -57,6 +52,11 @@ module.exports.routes = {
   'get /user/:id': {
         controller: 'user',
         action: 'index'
+    },
+
+  'get /user': {
+        controller: 'user',
+        action: 'list'
     },
 
 
