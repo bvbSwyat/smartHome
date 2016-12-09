@@ -8,11 +8,11 @@
       return {
 
         createNewGroup: function (user_id, params) {
-          $http.post("user/" + user_id + "/group", params)
+          return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
         },
 
         getUsersList: function () {
-          return $http.get(UrlsPath.api + "user/list");
+          return $http.get(UrlsPath.api + "users");
         },
 
         getCards: function (user_id) {
@@ -36,7 +36,7 @@
         },
 
         createNewList: function (user_id, params) {
-          $http.post("user/" + user_id + "/cardList", params)
+          return $http.post(UrlsPath.api + "user/" + user_id + "/cardList", params)
         },
 
         getUserCardList: function (user_id) {
