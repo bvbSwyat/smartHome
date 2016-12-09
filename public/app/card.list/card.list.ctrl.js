@@ -14,6 +14,7 @@
 
     var getCards = function () {
       RestApi.getCards(UserFactory.getUser().id).then(function (data) {
+        console.log(data);
         vm.cards = data.data;
       });
     };
@@ -30,14 +31,14 @@
       })
     };
 
-    vm.sendInGroup = function (index) {
+    vm.sendInGroup = function (id) {
       var modalInstance = $uibModal.open({
         templateUrl: 'dist/templates/card.list/card.list.group.html',
         controller: 'CardListGroupCtrl',
         controllerAs: '$ctrl',
         resolve: {
-          cardList: function () {
-            return vm.cards[index];
+          cardListId: function () {
+            return id;
           }
         }
       });

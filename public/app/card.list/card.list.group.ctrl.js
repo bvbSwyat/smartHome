@@ -1,21 +1,15 @@
 (function () {
-  angular.module("mainApp").controller("CardListGroupCtrl", function (RestApi, UserFactory, $uibModalInstance, cardList) {
+  angular.module("mainApp").controller("CardListGroupCtrl", function (RestApi, UserFactory, $uibModalInstance, cardListId) {
     var vm = this;
 
     vm.selectedId;
-    vm.groups = [
-      {name: "nazar", id: 1},
-      {name: "nazar1", id: 2},
-      {name: "nazar2", id: 3},
-      {name: "nazar3", id: 4}
-      ];
+    vm.groups = [];
 
-    RestApi.getGroupsForUser(UserFactory.getUser().id).then(function (data) {
+    RestApi.getAllGroups(UserFactory.getUser().id).then(function (data) {
       vm.groups = data.data;
     });
 
     vm.setSelected = function (id) {
-      console.log(id);
       vm.selectedId = id;
     };
 

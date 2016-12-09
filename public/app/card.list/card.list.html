@@ -2,26 +2,11 @@
   <div class="user-list">
     <div class="title"><h2>Card set</h2></div>
     <ul class="list-group card-list">
-      <li class="list-group-item">
-        First item
+      <li class="list-group-item"
+          ng-repeat="cardSet in $cardList.cardList">
+        {{cardSet.name || '[Card set name here]'}}
         <button style="padding: 6px 11px 6px 8px; float: right"
-                ng-click="$cardList.sendInGroup()"
-                type="button" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-        </button>
-      </li>
-      <li class="list-group-item">
-        First item
-        <button style="padding: 6px 11px 6px 8px; float: right"
-                ng-click="$cardList.sendInGroup()"
-                type="button" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-        </button>
-      </li>
-      <li class="list-group-item">
-        First item
-        <button style="padding: 6px 11px 6px 8px; float: right"
-                ng-click="$cardList.sendInGroup()"
+                ng-click="$cardList.sendInGroup(cardSet.id)"
                 type="button" class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
         </button>
