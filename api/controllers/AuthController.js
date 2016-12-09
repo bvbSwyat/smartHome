@@ -29,8 +29,8 @@ module.exports = {
       var userName = req.param('name');
       var userEmail = req.param('email');
       var userPass = req.param('password');
-      var isManager = req.param('is_manager') ? true : false;
-      if (!userName || !userEmail || !userPass || !isManager) {
+      var isManager = req.param('is_manager') == undefined ? true : false;
+      if (!userName || !userEmail || !userPass) {
         return res.send(403);
       }
       User.find({email: userEmail})

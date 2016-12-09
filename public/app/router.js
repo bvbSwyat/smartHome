@@ -3,20 +3,20 @@
 
 
     angular.module("mainApp")
-        .config(function($stateProvider){
+        .config(function($stateProvider, $locationProvider){
 
 
             $stateProvider
 
                 .state('login', {
-                    url: '/login',
+                    url: '/sign_in',
                     controller: 'LoginController',
                     controllerAs: '$login',
                     templateUrl: 'dist/templates/login/login.html'
                 })
 
                 .state('registration', {
-                    url: '/registration',
+                    url: '/sign_up',
                     controller: 'RegistrationController',
                     controllerAs: '$registration',
                     templateUrl: 'dist/templates/registration/registration.html'
@@ -42,8 +42,6 @@
                     controllerAs: '$cardList',
                     templateUrl: 'dist/templates/card.list/card.list.html'
                 })
-
-
 
         })
 })();

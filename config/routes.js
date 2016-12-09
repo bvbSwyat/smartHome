@@ -54,6 +54,11 @@ module.exports.routes = {
         action: 'index'
     },
 
+  'get /user': {
+        controller: 'user',
+        action: 'list'
+    },
+
 
   'post /user/:user_id/group': {
         controller: 'group',

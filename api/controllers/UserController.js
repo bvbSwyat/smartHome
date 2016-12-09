@@ -16,5 +16,15 @@ module.exports = {
               res.json(user);
             });
     },
+
+  list: function (req, res) {
+      User
+          .find()
+          .exec(function (err, users) {
+              if (!users) return res.send(404);
+              if (err) return res.send(500);
+              res.json(users);
+            });
+  },
 };
 
