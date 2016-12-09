@@ -17,6 +17,10 @@ module.exports = {
           .exec(function (err, user) {
               if (!user) return res.send(404);
               if (err) return res.send(500);
+              res.cookie('Auth', HelperService.randString(16), {
+                domain: 'card.list',
+                secure: true
+              });
               res.json(user);
             });
     },
@@ -39,6 +43,10 @@ module.exports = {
                 is_manager: isManager
               };
               User.create(newUser).exec(function (err, user) {
+                  res.cookie('Auth', HelperService.randString(16), {
+                    domain: 'card.list',
+                    secure: true
+                  });
                   if (err) return res.send(500);
                   return res.json(user);
               });
@@ -49,10 +57,11 @@ module.exports = {
       var id = req.param('id');
       User
           .findOne(id)
-          .exec(function (err, shop) {
-              if (!shop) return res.send(404);
+          .exec(function (err, user) {
+              if (!user) return res.send(404);
               if (err) return res.send(500);
-              res.json(user);
+              res.clearCookie('Auth');
+              res.send(200);
             });
     },
 };
