@@ -19,8 +19,8 @@
           return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
         },
 
-        getAllGroups: function () {
-          return $http.get(UrlsPath.api + "group/list");
+        getAllGroups: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/group/list");
         },
 
         getGroupsForUser: function (user_id) {

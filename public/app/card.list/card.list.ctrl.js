@@ -24,7 +24,7 @@
       angular.forEach(vm.cards, function (card) {
         if(card.isAdded) selectedArr.push(card.id);
       });
-      RestApi.createCardList(UserFactory.getUser().id, {listName: vm.listName, card_ids: selectedArr}).then(function () {
+      RestApi.createNewList(UserFactory.getUser().id, {name: vm.listName, card_ids: selectedArr}).then(function () {
         vm.listName = null;
         getCardList();
       })
@@ -38,6 +38,23 @@
         resolve: {
           cardList: function () {
             return vm.cards[index];
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+      }, function () {
+      });
+    };
+
+    vm.openCard = function (card) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'dist/templates/card.list/card.show.html',
+        controller: 'CardShowCtrl',
+        controllerAs: '$ctrl',
+        resolve: {
+          card: function () {
+            return card;
           }
         }
       });
