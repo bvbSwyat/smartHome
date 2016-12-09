@@ -11,10 +11,10 @@ module.exports = {
     if (!userId) return res.send(500);
     var params = {
       name: req.param('name'),
-      manager: userId,
-      user_ids: req.param('user_ids')
+      owner: userId,
+      content: req.param('content')
     };
-    CardList.create(params).exec(function (err, cardList) {
+    Card.create(params).exec(function (err, cardList) {
       if (err) return res.send(500);
       return res.json(cardList);
     });
@@ -23,13 +23,12 @@ module.exports = {
   list: function (req, res) {
     var userId = req.param('user_id');
     if (!userId) return res.send(500);
-
-    User.findOne(userId)
-      .populate('groups')
-      .exec(function (err, user) {
-        if (!user && !user.groups) return res.send(404);
+    Card.find({owner: userId})
+      .exec(function (err, cardsList) {
+        console.log(userId, cardsList)
+        if (!cardsList) return res.send(404);
         if (err) return res.send(500);
-      return res.json(user.groups);
+      return res.json(cardsList);
     });
   }
 };
