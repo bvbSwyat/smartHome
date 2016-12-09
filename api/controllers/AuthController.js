@@ -30,7 +30,7 @@ module.exports = {
       var userEmail = req.param('email');
       var userPass = req.param('password');
       var isManager = req.param('is_manager');
-      if (!userName || !userEmail || !userPass || !isManager) {
+      if (!userName || !userEmail || !userPass || isManager == undefined) {
         return res.send(403);
       }
       User.find({email: userEmail})

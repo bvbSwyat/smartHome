@@ -8,7 +8,9 @@
 module.exports = {
 
   attributes: {
-
+    manager: {
+      model: 'user'
+    }
   }
 };
 

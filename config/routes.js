@@ -52,10 +52,28 @@ module.exports.routes = {
         action: 'logout'
     },
 
+
+
   'get /user/:id': {
         controller: 'user',
         action: 'index'
     },
+
+
+  'post /user/:user_id/group': {
+        controller: 'group',
+        action: 'create'
+    },
+
+  // 'get /user/:user_id/group': {
+  //       controller: 'group',
+  //       action: 'index'
+  //   },
+  //
+  // 'get /user/:user_id/group/list': {
+  //       controller: 'group',
+  //       action: 'index'
+  //   },
 
   /***************************************************************************
   *                                                                          *

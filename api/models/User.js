@@ -8,7 +8,10 @@
 module.exports = {
 
   attributes: {
-
+    groups: {
+      collection: 'group',
+      via: 'manager'
+    }
   }
 };
 
