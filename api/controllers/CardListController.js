@@ -35,6 +35,7 @@ module.exports = {
   },
 
   list: function (req, res) {
+      console.log(333)
     var userId = req.param('user_id');
     if (!userId) return res.send(500);
 
