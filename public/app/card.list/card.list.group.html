@@ -5,7 +5,8 @@
 
   <ul class="list-group">
 
-    <li ng-class="{'selected': $ctrl.selectedId == group.id}" class="list-group-item" ng-repeat="group in $ctrl.groups"
+    <li ng-class="{'selected': $ctrl.selectedId == group.id}"
+        class="list-group-item" ng-repeat="group in $ctrl.groups"
         ng-click="$ctrl.setSelected(group.id)">
       {{group.name}}
     </li>
