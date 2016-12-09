@@ -53,6 +53,7 @@ $ npm i bower -g
 ### Install local dependencies and run application
 
 ```sh
+cd public/
 $ npm run-script run-app
 ```
 
