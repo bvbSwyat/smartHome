@@ -27,7 +27,8 @@ module.exports = {
     User.findOne(userId)
       .populate('groups')
       .exec(function (err, user) {
-        if (!user && !user.groups) return res.send(404);
+        if (!user) return res.send(404);
+        if (!user.groups) return res.send(404);
         if (err) return res.send(500);
       return res.json(user.groups);
     });
