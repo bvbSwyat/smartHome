@@ -1,10 +1,10 @@
 (function () {
-    angular.module("mainApp").controller("LoginController", function (RestApi, UserFactory, $state, $cookieStore) {
+    angular.module("mainApp").controller("LoginController", function (RestApi, UserFactory, $state, $cookieStore, $rootScope) {
       var vm = this;
 
-
+      console.log($cookieStore.get('isAuth'))
       if ($cookieStore.get('isAuth')) {
-        $state.go('user.usergroup');
+        $state.go($rootScope.$previousState);
       }
 
       vm.user = {
