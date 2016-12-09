@@ -19,5 +19,18 @@ module.exports = {
       return res.json(group);
     });
   },
+
+  list: function (req, res) {
+    var userId = req.param('user_id');
+    if (!userId) return res.send(500);
+
+    User.findOne(userId)
+      .populate('groups')
+      .exec(function (err, user) {
+        if (!user && !user.groups) return res.send(404);
+        if (err) return res.send(500);
+      return res.json(user.groups);
+    });
+  },
 };
 

@@ -70,10 +70,10 @@ module.exports.routes = {
   //       action: 'index'
   //   },
   //
-  // 'get /user/:user_id/group/list': {
-  //       controller: 'group',
-  //       action: 'index'
-  //   },
+  'get /user/:user_id/group/list': {
+        controller: 'group',
+        action: 'list'
+    },
 
   /***************************************************************************
   *                                                                          *
