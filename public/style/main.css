@@ -262,3 +262,7 @@ body {
 .create-card textarea {
   height: 120%
 }
+
+button[disabled] {
+  background-color: #999999;
+}

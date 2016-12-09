@@ -30,7 +30,8 @@
 
       <div class="group-name text-center">
 
-        <button class="but-cus" ng-click="$userGroup.create()">Create</button>
+        <button class="but-cus" ng-click="$userGroup.create()"
+                ng-disabled="!$userGroup.groupName">Create</button>
 
       </div>
 
