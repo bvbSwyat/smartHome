@@ -65,13 +65,35 @@ module.exports.routes = {
         action: 'create'
     },
 
-  // 'get /user/:user_id/group': {
-  //       controller: 'group',
-  //       action: 'index'
-  //   },
-  //
   'get /user/:user_id/group/list': {
         controller: 'group',
+        action: 'list'
+    },
+
+
+  // 'post /user/:user_id/card': {
+  //       controller: 'card',
+  //       action: 'create'
+  //   },
+  //
+  // 'get /user/:user_id/card/:card_id': {
+  //       controller: 'card',
+  //       action: 'get'
+  //   },
+
+
+  'post /user/:user_id/cardList': {
+        controller: 'cardList',
+        action: 'create'
+    },
+
+  'get /user/:user_id/cardList/:list_id': {
+        controller: 'cardList',
+        action: 'watch'
+    },
+
+  'get /user/:user_id/cardList/list': {
+        controller: 'cardList',
         action: 'list'
     },
 

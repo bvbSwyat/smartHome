@@ -11,6 +11,10 @@ module.exports = {
     groups: {
       collection: 'group',
       via: 'manager'
+    },
+    card_lists: {
+      collection: 'cardList',
+      via: 'owner'
     }
   }
 };

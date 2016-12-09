@@ -31,6 +31,6 @@ module.exports = {
         if (err) return res.send(500);
       return res.json(user.groups);
     });
-  },
+  }
 };
 
