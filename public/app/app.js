@@ -1,3 +1,3 @@
 (function () {
-    angular.module("mainApp", ['ui.router']);
+    angular.module("mainApp", ['ui.router', 'ui.bootstrap']);
 })();

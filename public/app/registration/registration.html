@@ -1,2 +1,13 @@
-<input placeholder="login">
-<input placeholder="password">
+<div class="login-page">
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name" ng-model="$registration.user.name"/>
+      <input type="text" placeholder="email address" ng-model="$registration.user.email"/>
+      <input type="password" placeholder="password" ng-model="$registration.user.password"/>
+      <label style="color: #b3b3b3;">Your vanity URL</label>
+      <input type="checkbox" class="form-control" ng-model="$registration.user.is_manager">
+      <button ng-click="$registration.signUp()" >create</button>
+      <p class="message">Already registered? <a ui-sref="login">Sign In</a></p>
+    </form>
+  </div>
+</div>

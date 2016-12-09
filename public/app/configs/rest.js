@@ -7,17 +7,41 @@
 
       return {
 
-        createNewGroup: function (params) {
-          // $http.post("")
+        createNewGroup: function (user_id, params) {
+          $http.post("user/" + user_id + "/group", params)
         },
 
         getUsersList: function () {
-          $http.get(UrlsPath.api + "user/list");
+          return $http.get(UrlsPath.api + "user/list");
+        },
+
+        getCards: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
         },
 
         getAllGroups: function () {
-          $http.get(UrlsPath.api + "group/list");
+          return $http.get(UrlsPath.api + "group/list");
         },
+
+        signIn: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_in", params);
+        },
+
+        signUp: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_up", params);
+        },
+
+        createNewList: function (user_id, params) {
+          $http.post("user/" + user_id + "/cardList", params)
+        },
+
+        getUserCardList: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
+        },
+
+        getOneCardList: function (user_id, card_list_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/" + card_list_id);
+        }
 
       }
 

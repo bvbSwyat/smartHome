@@ -1,5 +1,5 @@
 (function () {
-  angular.module("mainApp").controller("UserGroupController", function (RestApi) {
+  angular.module("mainApp").controller("UserGroupController", function (RestApi, UserFactory) {
     var vm = this;
 
     vm.groupName = null;
@@ -21,10 +21,15 @@
     getUsers();
 
     vm.create = function() {
-      RestApi.createNewGroup().then(function () {
+      var selectedArr = [];
+      angular.forEach(vm.users, function (user) {
+        if(user.isAdded) selectedArr.push(user.id);
+      });
+      RestApi.createNewGroup(UserFactory.getUser().id, {user_ids: vm.users, name: vm.groupName}).then(function () {
+        vm.groupName = null;
         getGroups();
       });
-    }
+    };
 
   })
 })();

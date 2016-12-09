@@ -29,6 +29,20 @@
                     templateUrl: 'dist/templates/user.group/user.group.html'
                 })
 
+                .state('createcard', {
+                    url: '/card/create',
+                    controller: 'CreateCardController',
+                    controllerAs: '$createCard',
+                    templateUrl: 'dist/templates/create.card/create.card.html'
+                })
+
+                .state('cardlist', {
+                    url: '/card/list',
+                    controller: 'CardListController',
+                    controllerAs: '$cardList',
+                    templateUrl: 'dist/templates/card.list/card.list.html'
+                })
+
 
 
         })
