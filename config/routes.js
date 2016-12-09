@@ -37,24 +37,24 @@ module.exports.routes = {
   },
 
 
-  '/auth/sign_up': {
+  'post /auth/sign_up': {
         controller: 'auth',
         action: 'sign_up'
     },
 
-  '/auth/sign_in': {
+  'post /auth/sign_in': {
         controller: 'auth',
         action: 'sign_in'
     },
 
-  '/auth/logout': {
+  'put /auth/logout': {
         controller: 'auth',
         action: 'logout'
     },
 
 
 
-  '/user/:id': {
+  'get /user/:id': {
         controller: 'user',
         action: 'index'
     },
