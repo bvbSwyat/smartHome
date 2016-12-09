@@ -2,7 +2,7 @@
   angular.module("mainApp").controller("CardListController", function (RestApi, UserFactory, $uibModal) {
     var vm = this;
 
-    vm.cards = null;
+    vm.cards = [];
     vm.listName = null;
 
     var getCardList = function () {
