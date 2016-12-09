@@ -3,18 +3,6 @@
 a [Sails](http://sailsjs.org) application
 
 
-## Run back-end
-
-```sh
- npm install grunt -g
- npm install sails -g
- npm install sails-disk --save
-```
-
-```sh
- sails lift
-```
-
 ## Run Front-end
 
 Project requires:
@@ -66,4 +54,16 @@ $ npm i bower -g
 
 ```sh
 $ npm run-script run-app
+```
+
+## Run back-end
+
+```sh
+ npm install grunt -g
+ npm install sails -g
+ npm install sails-disk --save
+```
+
+```sh
+ sails lift
 ```
