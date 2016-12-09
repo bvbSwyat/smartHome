@@ -23,6 +23,10 @@
           return $http.get(UrlsPath.api + "group/list");
         },
 
+        getGroupsForUser: function (user_id) {
+          return $http.get(UrlsPath.api + "group/list");
+        },
+
         signIn: function (params) {
           return $http.post(UrlsPath.api + "auth/sign_in", params);
         },

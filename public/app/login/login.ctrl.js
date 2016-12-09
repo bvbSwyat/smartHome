@@ -11,7 +11,7 @@
       vm.login = function () {
         RestApi.signIn(vm.user).then(function (data) {
           UserFactory.setUser(data.data);
-          $state.go('usergroup');
+          $state.go('user.usergroup');
         }, function (err) {
           vm.isError = true;
         });
