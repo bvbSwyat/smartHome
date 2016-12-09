@@ -49,6 +49,6 @@
                       templateUrl: 'dist/templates/card.list/card.list.html'
                   });
 
-            $urlRouterProvider.otherwise('/login');
+            $urlRouterProvider.otherwise('/sign_in');
         })
 })();
