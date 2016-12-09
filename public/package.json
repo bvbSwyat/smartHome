@@ -16,7 +16,7 @@
     "path": "^0.12.7"
   },
   "scripts": {
-    "run-app": "npm i && bower i && gulp init",
+    "run-app": "npm i && bower i && gulp serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

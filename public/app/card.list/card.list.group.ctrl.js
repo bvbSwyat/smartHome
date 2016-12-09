@@ -4,6 +4,7 @@
 
     vm.selectedId;
     vm.groups = [];
+    vm.isManager = UserFactory.getUser().is_manager;
 
     RestApi.getAllGroups(UserFactory.getUser().id).then(function (data) {
       vm.groups = data.data;

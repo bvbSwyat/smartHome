@@ -12,6 +12,11 @@
     </li>
 
   </ul>
+
+  <div ng-if="!($ctrl.isManager && $ctrl.groups.length)">
+    <h3 style="padding: 20px;color: #b3b3b3 !important">Sorry. Contact to your manager to create group</h3>
+  </div>
+
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
