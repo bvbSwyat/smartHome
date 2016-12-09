@@ -1,10 +1,15 @@
 (function () {
-    angular.module("mainApp").controller("LoginController", function (RestApi, UserFactory, $state) {
+    angular.module("mainApp").controller("LoginController", function (RestApi, UserFactory, $state, $cookieStore) {
       var vm = this;
+
+
+      if ($cookieStore.get('isAuth')) {
+        $state.go('user.usergroup');
+      }
 
       vm.user = {
         email: null,
-        password: null
+        password: null  
       };
       vm.isError = false;
 
