@@ -37,7 +37,8 @@
 
       <div class="group-name text-center">
 
-        <button class="but-cus" ng-click="$cardList.createCardList()">create</button>
+        <button class="but-cus" ng-click="$cardList.createCardList()"
+                ng-disabled="!$cardList.listName">create</button>
 
       </div>
 
