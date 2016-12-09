@@ -39,12 +39,14 @@ $ sudo apt-get purge nodejs npm
 
 ### Global dependencies instalation
 
-Check if installed Node.
 
 ```sh
-$ npm i gulp -g
-$ sudo apt-get install -y nodejs
-$ sudo apt-get purge nodejs npm
+$ npm install --global gulp-cli
+$ npm i bower -g
 ```
 
-npm install --global gulp-cli
+### Install local dependencies
+
+```sh
+$ npm run-script run-app
+```
