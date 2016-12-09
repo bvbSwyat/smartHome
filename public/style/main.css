@@ -190,3 +190,59 @@ body {
 .selected {
   background-color: #e3e3e3 !important;
 }
+
+.card-list .btn-lg {
+  padding: 6px 11px 6px 8px;
+  float: right;
+  border-radius: 0;
+  border-style: none;
+  background: #4CAF50;
+  color: white;
+}
+
+.card-list .list-group-item {
+  height: 60px;
+}
+
+.nav {
+  font-weight: bold;
+  color: #4CAF50;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.26);
+  margin-bottom: 0;
+  list-style: none;
+  padding: 0 20px;
+
+  background-color: white;
+  height: 70px;
+
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav .item {
+  text-transform: uppercase;
+  color: #4CAF50;
+  border: 2px solid #4caf50;
+  border-top: none;
+  border-bottom: none;
+  display: inline-block;
+  height: 100%;
+  padding: 18px;
+  width: 170px;
+  cursor: pointer;
+}
+
+.nav .item:hover {
+  text-decoration: none;
+}
+
+.nav .logout {
+  display: inline-block;
+  height: 100%;
+  padding: 0 40px;
+  float: right;
+  border: 2px solid #4caf50;
+  background-color: white;
+  border-top: none;
+  border-bottom: none;
+}
