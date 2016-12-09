@@ -2,7 +2,7 @@
     angular.module("mainApp").controller("LoginController", function (RestApi, UserFactory, $state, $cookieStore, $rootScope) {
       var vm = this;
 
-      console.log($cookieStore.get('isAuth'))
+      // remove it and newer use  -it must be session in next release
       if ($cookieStore.get('isAuth')) {
         $state.go($rootScope.$previousState);
       }
