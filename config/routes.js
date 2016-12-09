@@ -32,11 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-
-
   'post /auth/sign_up': {
         controller: 'auth',
         action: 'sign_up'

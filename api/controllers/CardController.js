@@ -25,7 +25,6 @@ module.exports = {
     if (!userId) return res.send(500);
     Card.find({owner: userId})
       .exec(function (err, cardsList) {
-        console.log(userId, cardsList)
         if (!cardsList) return res.send(404);
         if (err) return res.send(500);
       return res.json(cardsList);

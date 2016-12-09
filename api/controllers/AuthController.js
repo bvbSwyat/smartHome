@@ -29,8 +29,8 @@ module.exports = {
       var userName = req.param('name');
       var userEmail = req.param('email');
       var userPass = req.param('password');
-      var isManager = req.param('is_manager');
-      if (!userName || !userEmail || !userPass || isManager == undefined) {
+      var isManager = req.param('is_manager') ? true : false;
+      if (!userName || !userEmail || !userPass || !isManager) {
         return res.send(403);
       }
       User.find({email: userEmail})
@@ -63,6 +63,6 @@ module.exports = {
               res.clearCookie('Auth');
               res.send(200);
             });
-    },
+    }
 };
 
