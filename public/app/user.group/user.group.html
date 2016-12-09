@@ -4,7 +4,7 @@
     <ul class="list-group">
       <li class="list-group-item"
           ng-repeat="group in $userGroup.groups">
-        {{group}}</li>
+        {{group.name || '[Group name here]'}}</li>
     </ul>
   </div>
   <div class="create-group-block">

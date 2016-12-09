@@ -7,7 +7,7 @@
     vm.users = null;
 
     var getGroups = function () {
-      RestApi.getAllGroups().then(function (data) {
+      RestApi.getAllGroups(UserFactory.getUser().id).then(function (data) {
         vm.groups = data.data;
       });
     };

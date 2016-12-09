@@ -19,7 +19,7 @@
     };
 
     vm.createNewCard = function() {
-      RestApi.createNewCard(UserFactory.getUser().id, {title: vm.cardName, status: vm.status,
+      RestApi.createNewCard(UserFactory.getUser().id, {name: vm.cardName, status: vm.status,
         content: tinyMCE.activeEditor.getContent({format : 'raw'})}).then(function(data) {
           $state.go("user.cardlist");
       });

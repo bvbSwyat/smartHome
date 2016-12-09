@@ -40,31 +40,19 @@
 
       </div>
 
-      <li class="list-group-item">
+      <li class="list-group-item card-list"
+          style="height: 60px;"
+          ng-repeat="card in $cardList.cards">
 
-        <input type="checkbox" ng-model="isAdded">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
-
-      </li>
-      <li class="list-group-item">
-
-        <input type="checkbox" ng-model="isAdded">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
-
-      </li>
-      <li class="list-group-item">
-
-        <input type="checkbox" ng-model="isAdded">
-        <img src="http://fs9.www.ex.ua/show/178127802/178127802.png?1600">
-        First item
+        <input type="checkbox" ng-model="card.isAdded">
+        {{card.name || '[Card name here]'}}
+        <button class="btn-lg" style="float: right; margin-right: 15px;" ng-click="$cardList.openCard(card)">display</button>
 
       </li>
 
       <div class="group-name text-center">
 
-        <button class="but-cus" ng-click="$login.login()">create</button>
+        <button class="but-cus" ng-click="$cardList.createCardList()">create</button>
 
       </div>
 
