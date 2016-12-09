@@ -29,7 +29,7 @@ module.exports = {
       var userName = req.param('name');
       var userEmail = req.param('email');
       var userPass = req.param('password');
-      var isManager = req.param('is_manager') == undefined ? true : false;
+      var isManager = req.param('is_manager');
       if (!userName || !userEmail || !userPass) {
         return res.send(403);
       }
