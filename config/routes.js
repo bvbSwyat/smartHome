@@ -71,15 +71,15 @@ module.exports.routes = {
     },
 
 
-  // 'post /user/:user_id/card': {
-  //       controller: 'card',
-  //       action: 'create'
-  //   },
-  //
-  // 'get /user/:user_id/card/:card_id': {
-  //       controller: 'card',
-  //       action: 'get'
-  //   },
+  'post /user/:user_id/card': {
+        controller: 'card',
+        action: 'create'
+  },
+
+  'get /user/:user_id/card/list': {
+        controller: 'card',
+        action: 'list'
+    },
 
 
   'post /user/:user_id/cardList': {
