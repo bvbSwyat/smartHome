@@ -61,7 +61,7 @@ h2 {
   width: 100%;
 }
 
-.user-group .list-group .group-name .form-control2 {
+.group-name .form-control2 {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -245,4 +245,20 @@ body {
   background-color: white;
   border-top: none;
   border-bottom: none;
+}
+
+.create-card {
+  width: 80%;
+  margin-top: 50px;
+  margin-left: 10%;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.26);
+}
+
+.create-card .group-name {
+  background-color: white;
+  padding-top: 20px;
+}
+
+.create-card textarea {
+  height: 120%
 }
