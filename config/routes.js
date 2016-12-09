@@ -52,8 +52,6 @@ module.exports.routes = {
         action: 'logout'
     },
 
-
-
   'get /user/:id': {
         controller: 'user',
         action: 'index'
