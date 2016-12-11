@@ -16,11 +16,6 @@
               ng-click="$createCard.addInputIntest()"
               style="width: 40%; display: inline-block">
         Add field</button>
-      <select class="form-control"
-              ng-model="$createCard.status"
-              style="width: 40%; display: inline-block">
-        <option ng-repeat="status in $createCard.statuses" value="{{status.name}}">{{status.name}}</option>
-      </select>
     </div>
 
     <button class="but-cus" ng-click="$createCard.createNewCard()"

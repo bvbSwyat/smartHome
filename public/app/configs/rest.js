@@ -43,13 +43,18 @@
           return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
         },
 
-        getOneCardList: function (user_id, card_list_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/" + card_list_id);
+        getOneCardList: function (card_list_id) {
+          return $http.get(UrlsPath.api + "cardList/" + card_list_id);
         },
 
         createNewCard: function (user_id, params) {
           return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
         },
+
+        changeCardSet: function (list_id, cardSet) {
+          console.log(cardSet);
+          return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
+        }
 
       }
 
