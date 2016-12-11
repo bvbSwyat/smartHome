@@ -70,6 +70,11 @@ module.exports.routes = {
         action: 'list'
     },
 
+  'put group/:group_id': {
+        controller: 'group',
+        action: 'update'
+    },
+
 
   'post /user/:user_id/card': {
         controller: 'card',
