@@ -5,7 +5,12 @@
     vm.cardName = null;
 
     setTimeout(function() {
-      tinymce.init({ selector:'textarea' });
+      tinymce.init({
+        selector:'textarea',
+        height: 200,
+        plugins: "image",
+        image_caption: true
+      });
     }, 0);
 
     vm.addInputIntest = function () {
