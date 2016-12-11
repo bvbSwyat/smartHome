@@ -37,6 +37,9 @@
 
     vm.showMaterial = function (group) {
       vm.selectedGroup = group;
+
+
+
     };
 
     vm.openCard = function (card) {

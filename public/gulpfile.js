@@ -40,6 +40,7 @@ gulp.task('init', ['main-init', 'style-init']);
 gulp.task('serve', ['watch'], function() {
     gulp.src('.')
         .pipe(webserver({
+          port: 6639,
             fallback: "index.html"
         }));
 });
