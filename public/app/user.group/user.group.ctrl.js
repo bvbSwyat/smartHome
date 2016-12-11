@@ -1,5 +1,5 @@
 (function () {
-  angular.module("mainApp").controller("UserGroupController", function (RestApi, UserFactory) {
+  angular.module("mainApp").controller("UserGroupController", function (RestApi, UserFactory, $uibModal) {
     var vm = this;
 
     vm.groupName = null;
@@ -30,6 +30,27 @@
         getGroups();
       });
     };
+
+    vm.editGroup = function (group) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'dist/templates/user.group/edit.group.html',
+        controller: 'EditGroupCtrl',
+        controllerAs: '$ctrl',
+        size: "lg",
+        resolve: {
+          group: function () {
+            return group;
+          },
+          allUsers: function () {
+            return vm.users;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+      }, function () {
+      });
+    }
 
   })
 })();

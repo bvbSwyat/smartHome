@@ -52,8 +52,11 @@
         },
 
         changeCardSet: function (list_id, cardSet) {
-          console.log(cardSet);
           return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
+        },
+
+        changeGroup: function (group_id, params) {
+          return $http.put(UrlsPath.api + "group/" + group_id, params);
         }
 
       }
