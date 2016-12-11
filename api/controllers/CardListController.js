@@ -12,7 +12,8 @@ module.exports = {
     var params = {
       name: req.param('name'),
       owner: userId,
-      card_ids: req.param('card_ids')
+      card_ids: req.param('card_ids'),
+      status: req.param('status')
     };
     CardList.create(params).exec(function (err, cardList) {
       if (err) return res.send(500);
@@ -21,15 +22,26 @@ module.exports = {
   },
 
   watch: function (req, res) {
-    var userId = req.param('user_id');
     var listId = req.param('list_id');
-    if (!userId || !listId) return res.send(500);
+    if (!listId) return res.send(500);
 
-    var findObj = {owner: userId, id: listId};
+    var findObj = {id: listId};
     CardList.findOne(findObj)
       .exec(function (err, cardList) {
          if (!cardList) return res.send(404);
          if (err) return res.send(500);
+      return res.json(cardList);
+    });
+  },
+
+  update: function(req, res) {
+    var listId = req.param('list_id');
+    var status = req.param('status');
+    if (!status || !listId) return res.send(500);
+
+    var updateObj = {status: status};
+    CardList.update(listId, updateObj).exec(function (err, cardList) {
+      if (err) return res.send(500);
       return res.json(cardList);
     });
   },

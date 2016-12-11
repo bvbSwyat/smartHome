@@ -86,16 +86,22 @@ module.exports.routes = {
         controller: 'cardList',
         action: 'create'
     },
-    
+
+  'put /cardList/:list_id': {
+        controller: 'cardList',
+        action: 'update'
+    },
+
+  'get /cardList/:list_id': {
+        controller: 'cardList',
+        action: 'watch'
+    },
+
   'get /user/:user_id/cardList/list': {
         controller: 'cardList',
         action: 'list'
     },
 
-  'get /user/:user_id/cardList/:list_id': {
-        controller: 'cardList',
-        action: 'watch'
-    },
 
 
 
