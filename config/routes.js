@@ -70,7 +70,7 @@ module.exports.routes = {
         action: 'list'
     },
 
-  'put group/:group_id': {
+  'put /group/:group_id': {
         controller: 'group',
         action: 'update'
     },
