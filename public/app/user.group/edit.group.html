@@ -28,7 +28,8 @@
     <ul class="list-group">
 
       <li class="list-group-item"
-          ng-repeat="user in $ctrl.allUsers">
+          ng-repeat="user in $ctrl.allUsers"
+          ng-if="!$ctrl.isUsersInGroup(user.id)">
 
         {{user.name}}
 
