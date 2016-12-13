@@ -20,7 +20,7 @@ module.exports = {
   create: function(req, res) {
     var userId = req.param('user_id');
     var log = req.param('log');
-    var isStart = req.param('start');
+    var isStart = log == "start";
     if(isStart) {
       Logs.destroy().exec(function (err){
         if (err) {
