@@ -65,6 +65,11 @@ module.exports.routes = {
         action: 'create'
     },
 
+  'put /user/:user_id/group': {
+        controller: 'group',
+        action: 'update'
+    },
+
   'get /user/:user_id/group/list': {
         controller: 'group',
         action: 'list'
@@ -101,6 +106,15 @@ module.exports.routes = {
         controller: 'cardList',
         action: 'list'
     },
+
+  'get /logs': {
+        controller: 'Logs',
+        action: 'index'
+  },
+  'post /logs': {
+        controller: 'Logs',
+        action: 'create'
+  },
 
 
 

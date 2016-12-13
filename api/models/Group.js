@@ -10,7 +10,11 @@ module.exports = {
   attributes: {
     manager: {
       model: 'user'
-    }
+    },
+    groups: {
+      collection: 'user',
+      via: 'groups'
+    },
   }
 };
 
