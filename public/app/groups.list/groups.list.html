@@ -1,0 +1,42 @@
+<div class="user-group">
+  <div class="user-list">
+    <div class="title"><h2>Groups</h2></div>
+    <ul class="list-group card-list">
+      <li class="list-group-item"
+          ng-repeat="group in $groupsList.groups"
+          ng-class="{'selected': $groupsList.selectedGroup.id == group.id}"
+          ng-click="$groupsList.showMaterial(group)">
+        {{group.name || '[Group name here]'}}
+
+      </li>
+    </ul>
+  </div>
+  <div class="create-group-block">
+
+    <div class="title"><h2>{{$groupsList.selectedGroup ? ("Cards set from " + $groupsList.selectedGroup.name) : "Please select group"}}</h2></div>
+
+    <ul class="list-group card-list">
+      <li class="list-group-item"
+          style="height: auto"
+          ng-repeat="cardSet in $groupsList.selectedGroup.cardList">
+        {{cardSet.name || '[Card set name here]'}}
+
+        <br><br><br>
+        <h4 style="color: #b3b3b3 !important;">Cards:</h4>
+
+        <ul class="list-group card-list">
+          <li class="list-group-item card-list"
+              style="height: 60px;"
+              ng-repeat="card in cardSet.cards">
+
+            {{card.name || '[Card name here]'}}
+            <button class="btn-lg" style="float: right; margin-right: 15px;" ng-click="$groupsList.openCard(card)">display</button>
+
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+
+  </div>
+</div>

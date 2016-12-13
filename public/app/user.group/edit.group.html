@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Please select user for add to "{{$ctrl.group.name || '[Group name here]'}}"</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+  <div class="create-group-block" style="width: 49%; display: inline-block;">
+
+    <div class="title"><h2>All available users</h2></div>
+
+    <ul class="list-group">
+
+      <li class="list-group-item"
+          ng-repeat="user in $ctrl.allUsers"
+          ng-if="$ctrl.isUsersInGroup(user.id)">
+
+        <input type="checkbox" ng-model="user.isAdded">
+        {{user.name}}
+
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="create-group-block" style="width: 49%; display: inline-block;">
+
+    <div class="title"><h2>Users in group</h2></div>
+
+    <ul class="list-group">
+
+      <li class="list-group-item"
+          ng-repeat="user in $ctrl.allUsers"
+          ng-if="!$ctrl.isUsersInGroup(user.id)">
+
+        {{user.name}}
+
+      </li>
+
+    </ul>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

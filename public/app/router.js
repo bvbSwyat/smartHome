@@ -35,6 +35,13 @@
                       templateUrl: 'dist/templates/user.group/user.group.html'
                   })
 
+                  .state('user.groupslist', {
+                      url: '/groups/list',
+                      controller: 'GroupsListController',
+                      controllerAs: '$groupsList',
+                      templateUrl: 'dist/templates/groups.list/groups.list.html'
+                  })
+
                   .state('user.createcard', {
                       url: '/card/create',
                       controller: 'CreateCardController',

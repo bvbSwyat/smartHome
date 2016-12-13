@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">{{$ctrl.cardSet.name || '[Card set name here]'}}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+  <div class="form-group">
+    <label>Status:</label>
+    <select class="form-control"
+            ng-model="$ctrl.cardSet.status"
+            style="width: 20%; display: inline-block">
+      <option ng-repeat="status in $ctrl.statuses" value="{{status.name}}">{{status.name}}</option>
+    </select>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

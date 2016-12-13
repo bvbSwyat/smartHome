@@ -228,7 +228,7 @@ body {
   display: inline-block;
   height: 100%;
   padding: 18px;
-  width: 170px;
+  /*width: 170px;*/
   cursor: pointer;
 }
 

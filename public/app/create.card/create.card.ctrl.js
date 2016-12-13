@@ -3,12 +3,6 @@
     var vm = this;
 
     vm.cardName = null;
-    vm.statuses = [
-      {name: "Draft"},
-      {name: "Ready"},
-      {name: "Arhiv"}
-    ];
-    vm.status = vm.statuses[0].name;
 
     setTimeout(function() {
       tinymce.init({ selector:'textarea' });
@@ -19,7 +13,7 @@
     };
 
     vm.createNewCard = function() {
-      RestApi.createNewCard(UserFactory.getUser().id, {name: vm.cardName, status: vm.status,
+      RestApi.createNewCard(UserFactory.getUser().id, {name: vm.cardName,
         content: tinyMCE.activeEditor.getContent({format : 'raw'})}).then(function(data) {
           $state.go("user.cardlist");
       });

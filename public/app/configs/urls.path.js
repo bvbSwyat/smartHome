@@ -3,7 +3,7 @@
 
 
   angular.module("mainApp")
-    .constant("UrlsPath", {api: "http://localhost:1337/"});
+    .constant("UrlsPath", {api: "http://stok.if.ua/"});
 
 
 })();
