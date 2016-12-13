@@ -6,7 +6,7 @@
   </tr>
   <% _.each(logs, function (log, log_id) { %>
     <tr style="background: #add2ba;">
-      <td><%= log_id %></td><td><%= log.user_id %></td><td><%= log.log %></td>
+      <td><%= log_id %></td><td style="max-width: 1000px;"><%= log.user_id %></td><td><%= log.log %></td>
     </tr>
   <% }) %>
 </table>
