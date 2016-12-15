@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body" id="modal-body">
 
-  <div ng-bind-html="$ctrl.card.content | trust"></div>
+  <div id="card-content" bind-html-compile="$ctrl.card.content"></div>
 
 </div>
 <div class="modal-footer">

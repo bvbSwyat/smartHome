@@ -20,6 +20,21 @@ module.exports = {
     });
   },
 
+
+  update: function (req, res) {
+    var userId = req.param('user_id');
+    var cardId = req.param('card_id');
+    if (!userId || !cardId) return res.send(500);
+    var updateObj = {
+      name: req.param('name'),
+      content: req.param('content')
+    };
+    Card.update(cardId, updateObj).exec(function (err, cardList) {
+      if (err) return res.send(500);
+      return res.json(cardList);
+    });
+  },
+
   list: function (req, res) {
     var userId = req.param('user_id');
     if (!userId) return res.send(500);

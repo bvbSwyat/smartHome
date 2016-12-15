@@ -85,6 +85,7 @@
       });
 
       modalInstance.result.then(function () {
+        getCards();
       }, function () {
       });
     };

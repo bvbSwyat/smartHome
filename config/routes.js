@@ -91,6 +91,11 @@ module.exports.routes = {
         action: 'create'
   },
 
+  'put /user/:user_id/card/:card_id': {
+    controller: 'card',
+    action: 'update'
+  },
+
   'get /user/:user_id/card/list': {
         controller: 'card',
         action: 'list'

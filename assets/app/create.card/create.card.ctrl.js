@@ -1,7 +1,7 @@
 (function () {
   angular.module("mainApp").controller("CreateCardController", function (UserFactory, RestApi, $state) {
     var vm = this;
-
+    var index = 0;
     vm.cardName = null;
 
     setTimeout(function() {
@@ -14,7 +14,7 @@
     }, 0);
 
     vm.addInputIntest = function () {
-      tinyMCE.execCommand('mceInsertContent',false,'<input>');
+      tinyMCE.execCommand('InsertHTML',false,"<input ca-value ng-model='model" + ++index + "'>");
     };
 
     vm.createNewCard = function() {
