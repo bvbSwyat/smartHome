@@ -47,6 +47,7 @@
         templateUrl: 'dist/templates/card.list/card.show.html',
         controller: 'CardShowCtrl',
         controllerAs: '$ctrl',
+        size: "lg",
         resolve: {
           card: function () {
             return card;

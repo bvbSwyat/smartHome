@@ -21,12 +21,14 @@ module.exports = {
   },
 
   update: function(req, res) {
-    var userId = req.param('user_id');
-    if (!userId) return res.send(500);
-    var updateObj = {};
-    CardList.update(listId, updateObj).exec(function (err, cardList) {
+    var groupId = req.param('group_id');
+    var userIds = req.param('user_ids');
+    if (!userIds || !groupId) return res.send(500);
+
+    var updateObj = {user_ids: userIds};
+    CardList.update(groupId, updateObj).exec(function (err, group) {
       if (err) return res.send(500);
-      return res.json(cardList);
+      return res.json(group);
     });
   },
 

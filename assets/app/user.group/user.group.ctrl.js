@@ -48,6 +48,7 @@
       });
 
       modalInstance.result.then(function () {
+        getGroups();
       }, function () {
       });
     }

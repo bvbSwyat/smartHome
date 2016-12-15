@@ -51,6 +51,10 @@
           return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
         },
 
+        updateCard: function (user_id, card_id, params) {
+          return $http.put(UrlsPath.api + "user/" + user_id + "/card/" + card_id, params)
+        },
+
         changeCardSet: function (list_id, cardSet) {
           return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
         },
