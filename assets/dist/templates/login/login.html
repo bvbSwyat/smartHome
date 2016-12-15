@@ -1,0 +1,11 @@
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <input type="text" placeholder="email" ng-model="$login.user.email"/>
+      <input type="password" placeholder="password" ng-model="$login.user.password"/>
+      <p class="error" ng-show="$login.isError">Email or password is invalid</p>
+      <button ng-click="$login.login()">login</button>
+      <p class="message">Not registered? <a ui-sref="registration">Create an account</a></p>
+    </form>
+  </div>
+</div>

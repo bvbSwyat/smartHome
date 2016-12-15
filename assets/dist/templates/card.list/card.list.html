@@ -1,0 +1,48 @@
+<div class="user-group">
+  <div class="user-list">
+    <div class="title"><h2>Card set</h2></div>
+    <ul class="list-group card-list">
+      <li class="list-group-item"
+          ng-repeat="cardSet in $cardList.cardList">
+        {{cardSet.name || '[Card set name here]'}}
+        <button style="padding: 6px 11px 6px 8px; float: right"
+                ng-click="$cardList.sendInGroup(cardSet.id)"
+                type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="create-list-block">
+
+    <div class="title"><h2>Create new card set</h2></div>
+
+    <ul class="list-group">
+
+      <div class="group-name text-center">
+
+        <input class="form-control2" placeholder="Name for set" ng-model="$cardList.listName">
+
+      </div>
+
+      <li class="list-group-item card-list"
+          style="height: 60px;"
+          ng-repeat="card in $cardList.cards">
+
+        <input type="checkbox" ng-model="card.isAdded">
+        {{card.name || '[Card name here]'}}
+        <button class="btn-lg" style="float: right; margin-right: 15px;" ng-click="$cardList.openCard(card)">display</button>
+
+      </li>
+
+      <div class="group-name text-center">
+
+        <button class="but-cus" ng-click="$cardList.createCardList()"
+                ng-disabled="!$cardList.listName">create</button>
+
+      </div>
+
+    </ul>
+
+  </div>
+</div>
