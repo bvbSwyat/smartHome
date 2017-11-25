@@ -36,6 +36,17 @@ module.exports.routes = {
     view: 'index'
   },
 
+  'get /home': {
+        controller: 'home',
+        action: 'index'
+    },
+
+
+  'post /home': {
+        controller: 'home',
+        action: 'update'
+    },
+
 
   'post /auth/sign_up': {
         controller: 'auth',

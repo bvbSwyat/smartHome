@@ -4,6 +4,9 @@
 
       // remove it and newer use  -it must be session in next release
       if ($cookieStore.get('isAuth')) {
+        if ($rootScope.$previousState && $rootScope.$previousState.abstract) {
+          $state.go('home.dashboard');
+        }
         $state.go($rootScope.$previousState);
       }
 
@@ -16,7 +19,7 @@
       vm.login = function () {
         RestApi.signIn(vm.user).then(function (data) {
           UserFactory.setUser(data.data);
-          $state.go('user.usergroup');
+          $state.go('home.dashboard');
         }, function (err) {
           vm.isError = true;
         });

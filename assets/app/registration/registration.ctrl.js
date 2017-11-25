@@ -11,7 +11,7 @@
       vm.signUp = function () {
         RestApi.signUp(vm.user).then(function (data) {
            UserFactory.setUser(data.data);
-           data.is_manager ? $state.go('user.usergroup') : $state.go('user.cardlist');
+           data.is_manager ? $state.go('home.dashboard') : $state.go('user.cardlist');
         }, function(error) {
             alert('You sent bad credentials!');
         });

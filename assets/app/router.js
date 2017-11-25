@@ -21,35 +21,35 @@
                     templateUrl: 'dist/templates/registration/registration.html'
                 })
 
-                .state('user', {
+                .state('home', {
                   abstract: true,
                   controller: 'MenuController',
                   controllerAs: '$menu',
                   templateUrl: 'dist/templates/menu/menu.html'
                 })
 
-                  .state('user.usergroup', {
+                  .state('home.usergroup', {
                       url: '/user/group',
                       controller: 'UserGroupController',
                       controllerAs: '$userGroup',
                       templateUrl: 'dist/templates/user.group/user.group.html'
                   })
 
-                  .state('user.groupslist', {
+                  .state('home.groupslist', {
                       url: '/groups/list',
                       controller: 'GroupsListController',
                       controllerAs: '$groupsList',
                       templateUrl: 'dist/templates/groups.list/groups.list.html'
                   })
 
-                  .state('user.createcard', {
-                      url: '/card/create',
-                      controller: 'CreateCardController',
-                      controllerAs: '$createCard',
-                      templateUrl: 'dist/templates/create.card/create.card.html'
+                  .state('home.dashboard', {
+                      url: '/dashboard',
+                      controller: 'DashboardController',
+                      controllerAs: '$dashboard',
+                      templateUrl: 'dist/templates/dashboard/dashboard.html'
                   })
 
-                  .state('user.cardlist', {
+                  .state('home.cardlist', {
                       url: '/card/list',
                       controller: 'CardListController',
                       controllerAs: '$cardList',

@@ -7,6 +7,14 @@
 
       return {
 
+        getHomeData: function (user_id) {
+          return $http.get(UrlsPath.api + "home");
+        },
+
+        setHomeData: function (params) {
+          return $http.post(UrlsPath.api + "home", params);
+        },
+
         createNewGroup: function (user_id, params) {
           return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
         },
