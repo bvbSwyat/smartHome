@@ -6,9 +6,9 @@
          $httpProvider.interceptors.push(function($q) {
           return {
            'request': function(config) {
-               console.log(config)
-               config.headers['accept'] = 'Authorization';
-               config.headers['Authorization'] = new Date();
+               // console.log(config)
+               // config.headers['accept'] = 'Authorization';
+               // config.headers['Authorization'] = new Date();
                return config;
             },
 
