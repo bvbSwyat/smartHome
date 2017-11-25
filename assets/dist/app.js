@@ -1,6 +1,27 @@
 (function () {
     angular.module("mainApp", ['ui.router', 'ui.bootstrap', 'ngCookies', 'angular-bind-html-compile'])
 
+    .config( ['$httpProvider', function ($httpProvider) {
+
+         $httpProvider.interceptors.push(function($q) {
+          return {
+           'request': function(config) {
+               console.log(config)
+               config.headers['accept'] = 'Authorization';
+               config.headers['Authorization'] = new Date();
+               return config;
+            },
+
+            'response': function(response) {
+               return response;
+            }
+          };
+        });
+        // $httpProvider.defaults.headers.post['XSRF-AUTH'] =
+        //     "some accessToken to be generated later";
+    }])
+
+
     .run( [ '$rootScope', function ($rootScope) {
         $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
             $rootScope.$previousState = from;
@@ -68,6 +89,139 @@
 
             $urlRouterProvider.otherwise('/sign_in');
         })
+})();
+
+(function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .factory("RestApi", function($http, UrlsPath){
+
+      return {
+
+        getHomeData: function (user_id) {
+          return $http.get(UrlsPath.api + "home");
+        },
+
+        setHomeData: function (params) {
+          return $http.post(UrlsPath.api + "home", params);
+        },
+
+        createNewGroup: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
+        },
+
+        getUsersList: function () {
+          return $http.get(UrlsPath.api + "users");
+        },
+
+        getCards: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
+        },
+
+        getAllGroups: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/group/list");
+        },
+
+        getGroupsForUser: function (user_id) {
+          return $http.get(UrlsPath.api + "group/list");
+        },
+
+        signIn: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_in", params);
+        },
+
+        signUp: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_up", params);
+        },
+
+        createNewList: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/cardList", params)
+        },
+
+        getUserCardList: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
+        },
+
+        getOneCardList: function (card_list_id) {
+          return $http.get(UrlsPath.api + "cardList/" + card_list_id);
+        },
+
+        createNewCard: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
+        },
+
+        updateCard: function (user_id, card_id, params) {
+          return $http.put(UrlsPath.api + "user/" + user_id + "/card/" + card_id, params)
+        },
+
+        changeCardSet: function (list_id, cardSet) {
+          return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
+        },
+
+        changeGroup: function (group_id, params) {
+          return $http.put(UrlsPath.api + "group/" + group_id, params);
+        }
+
+      }
+
+    })
+
+})();
+
+
+(function () {
+  angular.module("mainApp").filter("trust", ['$sce', function($sce) {
+    return function (htmlCode) {
+      return $sce.trustAsHtml(htmlCode);
+    }
+  }]);
+})();
+
+(function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .constant("UrlsPath", {api: "http://stok.if.ua/"}); //http://stok.if.ua/  http://localhost:1337/
+
+
+})();
+
+(function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .factory("UserFactory", function($cookieStore){
+
+      var user = {};
+
+      return {
+
+        getUser: function () {
+        // remove it and newer use
+          user.id = $cookieStore.get('id');
+          user.is_manager = $cookieStore.get('is_manager');
+        //
+          return user;
+        },
+
+        setUser: function (u) {
+            
+        // remove it and newer use
+          $cookieStore.put('id', u.id);
+          $cookieStore.put('is_manager', u.is_manager);
+          $cookieStore.put('isAuth', true);
+        //
+          user = u;
+        }
+
+      }
+
+    })
+
 })();
 
 (function () {
@@ -238,139 +392,6 @@
 })();
 
 (function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .factory("RestApi", function($http, UrlsPath){
-
-      return {
-
-        getHomeData: function (user_id) {
-          return $http.get(UrlsPath.api + "home");
-        },
-
-        setHomeData: function (params) {
-          return $http.post(UrlsPath.api + "home", params);
-        },
-
-        createNewGroup: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
-        },
-
-        getUsersList: function () {
-          return $http.get(UrlsPath.api + "users");
-        },
-
-        getCards: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
-        },
-
-        getAllGroups: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/group/list");
-        },
-
-        getGroupsForUser: function (user_id) {
-          return $http.get(UrlsPath.api + "group/list");
-        },
-
-        signIn: function (params) {
-          return $http.post(UrlsPath.api + "auth/sign_in", params);
-        },
-
-        signUp: function (params) {
-          return $http.post(UrlsPath.api + "auth/sign_up", params);
-        },
-
-        createNewList: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/cardList", params)
-        },
-
-        getUserCardList: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
-        },
-
-        getOneCardList: function (card_list_id) {
-          return $http.get(UrlsPath.api + "cardList/" + card_list_id);
-        },
-
-        createNewCard: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
-        },
-
-        updateCard: function (user_id, card_id, params) {
-          return $http.put(UrlsPath.api + "user/" + user_id + "/card/" + card_id, params)
-        },
-
-        changeCardSet: function (list_id, cardSet) {
-          return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
-        },
-
-        changeGroup: function (group_id, params) {
-          return $http.put(UrlsPath.api + "group/" + group_id, params);
-        }
-
-      }
-
-    })
-
-})();
-
-
-(function () {
-  angular.module("mainApp").filter("trust", ['$sce', function($sce) {
-    return function (htmlCode) {
-      return $sce.trustAsHtml(htmlCode);
-    }
-  }]);
-})();
-
-(function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .constant("UrlsPath", {api: "http://stok.if.ua/"}); //http://stok.if.ua/  http://localhost:1337/
-
-
-})();
-
-(function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .factory("UserFactory", function($cookieStore){
-
-      var user = {};
-
-      return {
-
-        getUser: function () {
-        // remove it and newer use
-          user.id = $cookieStore.get('id');
-          user.is_manager = $cookieStore.get('is_manager');
-        //
-          return user;
-        },
-
-        setUser: function (u) {
-            
-        // remove it and newer use
-          $cookieStore.put('id', u.id);
-          $cookieStore.put('is_manager', u.is_manager);
-          $cookieStore.put('isAuth', true);
-        //
-          user = u;
-        }
-
-      }
-
-    })
-
-})();
-
-(function () {
   angular.module("mainApp").directive("caValue", function () {
     return {
       link: function(scope, element, attrs) {
@@ -398,23 +419,16 @@
       }
     };
     setInterval(function() {
-      var self = this;
       RestApi.getHomeData().then(function(response) {
-        console.log(response)
-        self.homeData = response.data;
-      }, function(response) {
-        console.log('error')
-        console.log(response)
+        vm.homeData = response.data;
       });
     }, 3000);
 
 
     vm.toggleSystem = function(systemName) {
-      this.homeData[systemName].status = !this.homeData[systemName].status;
-      var self = this;
+      vm.homeData[systemName].status = !this.homeData[systemName].status;
       RestApi.setHomeData(this.homeData).then(function(response) {
-        console.log(data)
-         self.homeData = response.data;
+         vm.homeData = response.data;
       });
     };
 
@@ -517,6 +531,21 @@
 })();
 
 (function () {
+  angular.module("mainApp").controller("MenuController", function ($state, $cookieStore, UserFactory) {
+    var vm = this;
+
+    vm.isManager = UserFactory.getUser().is_manager;
+
+    vm.logout = function () {
+      $cookieStore.remove('isAuth');
+      $cookieStore.remove('id');
+      $state.go("login");
+    }
+
+  })
+})();
+
+(function () {
     angular.module("mainApp").controller("RegistrationController", function (RestApi, $state, UserFactory, $cookieStore, $rootScope) {
 
       var vm = this;
@@ -535,21 +564,6 @@
         });
       }
     })
-})();
-
-(function () {
-  angular.module("mainApp").controller("MenuController", function ($state, $cookieStore, UserFactory) {
-    var vm = this;
-
-    vm.isManager = UserFactory.getUser().is_manager;
-
-    vm.logout = function () {
-      $cookieStore.remove('isAuth');
-      $cookieStore.remove('id');
-      $state.go("login");
-    }
-
-  })
 })();
 
 (function () {

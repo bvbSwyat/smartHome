@@ -13,18 +13,16 @@
       }
     };
     setInterval(function() {
-      var self = this;
       RestApi.getHomeData().then(function(response) {
-        self.homeData = response.data;
+        vm.homeData = response.data;
       });
     }, 3000);
 
 
     vm.toggleSystem = function(systemName) {
-      this.homeData[systemName].status = !this.homeData[systemName].status;
-      var self = this;
+      vm.homeData[systemName].status = !this.homeData[systemName].status;
       RestApi.setHomeData(this.homeData).then(function(response) {
-         self.homeData = response.data;
+         vm.homeData = response.data;
       });
     };
 
