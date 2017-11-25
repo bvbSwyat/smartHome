@@ -22,7 +22,6 @@
     vm.toggleSystem = function(systemName) {
       vm.homeData[systemName].status = !this.homeData[systemName].status;
       RestApi.setHomeData(this.homeData).then(function(response) {
-         vm.homeData = response.data;
       });
     };
 
