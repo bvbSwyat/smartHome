@@ -371,6 +371,19 @@
 })();
 
 (function () {
+  angular.module("mainApp").directive("caValue", function () {
+    return {
+      link: function(scope, element, attrs) {
+        scope[attrs.ngModel] = attrs.value || "";
+        scope.$watch(attrs.ngModel, function (val) {
+          element.attr("value", val);
+        });
+      }
+    }
+  });
+}());
+
+(function () {
   angular.module("mainApp").controller("DashboardController", function (UserFactory, RestApi, $state) {
     var vm = this;
 
@@ -385,35 +398,28 @@
       }
     };
     setInterval(function() {
-      RestApi.getHomeData().then(function(data) {
-        this.homeData = data;
+      var self = this;
+      RestApi.getHomeData().then(function(response) {
+        console.log(response)
+        self.homeData = response.data;
+      }, function(response) {
+        console.log('error')
+        console.log(response)
       });
     }, 3000);
 
 
     vm.toggleSystem = function(systemName) {
       this.homeData[systemName].status = !this.homeData[systemName].status;
-
-      RestApi.setHomeData(this.homeData).then(function(data) {
-         this.homeData = data;
+      var self = this;
+      RestApi.setHomeData(this.homeData).then(function(response) {
+        console.log(data)
+         self.homeData = response.data;
       });
     };
 
   })
 })();
-
-(function () {
-  angular.module("mainApp").directive("caValue", function () {
-    return {
-      link: function(scope, element, attrs) {
-        scope[attrs.ngModel] = attrs.value || "";
-        scope.$watch(attrs.ngModel, function (val) {
-          element.attr("value", val);
-        });
-      }
-    }
-  });
-}());
 
 (function () {
   angular.module("mainApp").controller("GroupsListController", function (RestApi, UserFactory, $uibModal) {
@@ -511,21 +517,6 @@
 })();
 
 (function () {
-  angular.module("mainApp").controller("MenuController", function ($state, $cookieStore, UserFactory) {
-    var vm = this;
-
-    vm.isManager = UserFactory.getUser().is_manager;
-
-    vm.logout = function () {
-      $cookieStore.remove('isAuth');
-      $cookieStore.remove('id');
-      $state.go("login");
-    }
-
-  })
-})();
-
-(function () {
     angular.module("mainApp").controller("RegistrationController", function (RestApi, $state, UserFactory, $cookieStore, $rootScope) {
 
       var vm = this;
@@ -544,6 +535,21 @@
         });
       }
     })
+})();
+
+(function () {
+  angular.module("mainApp").controller("MenuController", function ($state, $cookieStore, UserFactory) {
+    var vm = this;
+
+    vm.isManager = UserFactory.getUser().is_manager;
+
+    vm.logout = function () {
+      $cookieStore.remove('isAuth');
+      $cookieStore.remove('id');
+      $state.go("login");
+    }
+
+  })
 })();
 
 (function () {
