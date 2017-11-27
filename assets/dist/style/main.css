@@ -267,16 +267,6 @@ body {
   border-right: 1px solid #d8dfd8;
 }
 
-@media(max-width: 1000px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-  .dashboard__item:first-child {
-    border-bottom: 1px solid #919891;
-    border-right: none;
-  }
-}
-
 .dashboard__title {
   color: #919891;
   margin: 10px 0 25px 0;
@@ -351,4 +341,49 @@ body {
 
 .activated:hover,.activated:active,.activated:focus {
   background: #43a0ff;
+}
+
+@media only screen and (max-device-width: 700px) {
+  .dashboard__title {
+    font-size: 70px;
+  }
+
+  .nav {
+    font-size: 40px;
+  }
+
+  .bordered {
+
+  }
+
+  .dashboard__wrapper {
+    margin-top: 15px;
+  }
+
+  .labeled {
+    font-size: 56px;
+  }
+
+  .dashboard__item:nth-child(2) .home__list {
+    grid-template-columns: auto;
+  }
+
+  .home__list .abutton {
+    font-size: 55px;
+    padding: 35px;
+  }
+
+  .home__item p {
+    font-size: 55px;
+  }
+}
+
+@media(max-width: 1000px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  .dashboard__item:first-child {
+    border-bottom: 1px solid #919891;
+    border-right: none;
+  }
 }
