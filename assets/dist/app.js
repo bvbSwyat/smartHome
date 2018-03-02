@@ -92,6 +92,182 @@
 })();
 
 (function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .factory("RestApi", function($http, UrlsPath){
+
+      return {
+
+        getHomeData: function (user_id) {
+          return $http.get(UrlsPath.api + "home");
+        },
+
+        setHomeData: function (params) {
+          return $http.post(UrlsPath.api + "home", params);
+        },
+
+        createNewGroup: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
+        },
+
+        getUsersList: function () {
+          return $http.get(UrlsPath.api + "users");
+        },
+
+        getCards: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
+        },
+
+        getAllGroups: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/group/list");
+        },
+
+        getGroupsForUser: function (user_id) {
+          return $http.get(UrlsPath.api + "group/list");
+        },
+
+        signIn: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_in", params);
+        },
+
+        signUp: function (params) {
+          return $http.post(UrlsPath.api + "auth/sign_up", params);
+        },
+
+        createNewList: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/cardList", params)
+        },
+
+        getUserCardList: function (user_id) {
+          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
+        },
+
+        getOneCardList: function (card_list_id) {
+          return $http.get(UrlsPath.api + "cardList/" + card_list_id);
+        },
+
+        createNewCard: function (user_id, params) {
+          return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
+        },
+
+        updateCard: function (user_id, card_id, params) {
+          return $http.put(UrlsPath.api + "user/" + user_id + "/card/" + card_id, params)
+        },
+
+        changeCardSet: function (list_id, cardSet) {
+          return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
+        },
+
+        changeGroup: function (group_id, params) {
+          return $http.put(UrlsPath.api + "group/" + group_id, params);
+        }
+
+      }
+
+    })
+
+})();
+
+
+(function () {
+  angular.module("mainApp").filter("trust", ['$sce', function($sce) {
+    return function (htmlCode) {
+      return $sce.trustAsHtml(htmlCode);
+    }
+  }]);
+})();
+
+(function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .constant("UrlsPath", {api: "http://stok.if.ua/"}); //http://stok.if.ua/  http://localhost:1337/
+
+
+})();
+
+(function () {
+  'use strict';
+
+
+  angular.module("mainApp")
+    .factory("UserFactory", function($cookieStore){
+
+      var user = {};
+
+      return {
+
+        getUser: function () {
+        // remove it and newer use
+          user.id = $cookieStore.get('id');
+          user.is_manager = $cookieStore.get('is_manager');
+        //
+          return user;
+        },
+
+        setUser: function (u) {
+            
+        // remove it and newer use
+          $cookieStore.put('id', u.id);
+          $cookieStore.put('is_manager', u.is_manager);
+          $cookieStore.put('isAuth', true);
+        //
+          user = u;
+        }
+
+      }
+
+    })
+
+})();
+
+(function () {
+  angular.module("mainApp").controller("DashboardController", function (UserFactory, RestApi, $state) {
+    var vm = this;
+
+    vm.homeData = {
+      status: false,
+      temperature: null,
+      hSystem: {
+        status: false
+      },
+      kSystem: {
+        status: false
+      }
+    };
+    setInterval(function() {
+      RestApi.getHomeData().then(function(response) {
+        vm.homeData = response.data;
+      });
+    }, 3000);
+
+
+    vm.toggleSystem = function(systemName) {
+      vm.homeData[systemName].status = !this.homeData[systemName].status;
+      RestApi.setHomeData(this.homeData).then(function(response) {
+      });
+    };
+
+  })
+})();
+
+(function () {
+  angular.module("mainApp").directive("caValue", function () {
+    return {
+      link: function(scope, element, attrs) {
+        scope[attrs.ngModel] = attrs.value || "";
+        scope.$watch(attrs.ngModel, function (val) {
+          element.attr("value", val);
+        });
+      }
+    }
+  });
+}());
+
+(function () {
   angular.module("mainApp").controller("CardListController", function (RestApi, UserFactory, $uibModal) {
     var vm = this;
 
@@ -257,182 +433,6 @@
 
   })
 })();
-
-(function () {
-  angular.module("mainApp").controller("DashboardController", function (UserFactory, RestApi, $state) {
-    var vm = this;
-
-    vm.homeData = {
-      status: false,
-      temperature: null,
-      hSystem: {
-        status: false
-      },
-      kSystem: {
-        status: false
-      }
-    };
-    setInterval(function() {
-      RestApi.getHomeData().then(function(response) {
-        vm.homeData = response.data;
-      });
-    }, 3000);
-
-
-    vm.toggleSystem = function(systemName) {
-      vm.homeData[systemName].status = !this.homeData[systemName].status;
-      RestApi.setHomeData(this.homeData).then(function(response) {
-      });
-    };
-
-  })
-})();
-
-(function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .factory("RestApi", function($http, UrlsPath){
-
-      return {
-
-        getHomeData: function (user_id) {
-          return $http.get(UrlsPath.api + "home");
-        },
-
-        setHomeData: function (params) {
-          return $http.post(UrlsPath.api + "home", params);
-        },
-
-        createNewGroup: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/group", params)
-        },
-
-        getUsersList: function () {
-          return $http.get(UrlsPath.api + "users");
-        },
-
-        getCards: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/card/list");
-        },
-
-        getAllGroups: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/group/list");
-        },
-
-        getGroupsForUser: function (user_id) {
-          return $http.get(UrlsPath.api + "group/list");
-        },
-
-        signIn: function (params) {
-          return $http.post(UrlsPath.api + "auth/sign_in", params);
-        },
-
-        signUp: function (params) {
-          return $http.post(UrlsPath.api + "auth/sign_up", params);
-        },
-
-        createNewList: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/cardList", params)
-        },
-
-        getUserCardList: function (user_id) {
-          return $http.get(UrlsPath.api + "user/" + user_id + "/cardList/list");
-        },
-
-        getOneCardList: function (card_list_id) {
-          return $http.get(UrlsPath.api + "cardList/" + card_list_id);
-        },
-
-        createNewCard: function (user_id, params) {
-          return $http.post(UrlsPath.api + "user/" + user_id + "/card", params)
-        },
-
-        updateCard: function (user_id, card_id, params) {
-          return $http.put(UrlsPath.api + "user/" + user_id + "/card/" + card_id, params)
-        },
-
-        changeCardSet: function (list_id, cardSet) {
-          return $http.put(UrlsPath.api + "cardList/" + list_id, cardSet);
-        },
-
-        changeGroup: function (group_id, params) {
-          return $http.put(UrlsPath.api + "group/" + group_id, params);
-        }
-
-      }
-
-    })
-
-})();
-
-
-(function () {
-  angular.module("mainApp").filter("trust", ['$sce', function($sce) {
-    return function (htmlCode) {
-      return $sce.trustAsHtml(htmlCode);
-    }
-  }]);
-})();
-
-(function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .constant("UrlsPath", {api: "http://localhost:1337/"}); //http://stok.if.ua/  http://localhost:1337/
-
-
-})();
-
-(function () {
-  'use strict';
-
-
-  angular.module("mainApp")
-    .factory("UserFactory", function($cookieStore){
-
-      var user = {};
-
-      return {
-
-        getUser: function () {
-        // remove it and newer use
-          user.id = $cookieStore.get('id');
-          user.is_manager = $cookieStore.get('is_manager');
-        //
-          return user;
-        },
-
-        setUser: function (u) {
-            
-        // remove it and newer use
-          $cookieStore.put('id', u.id);
-          $cookieStore.put('is_manager', u.is_manager);
-          $cookieStore.put('isAuth', true);
-        //
-          user = u;
-        }
-
-      }
-
-    })
-
-})();
-
-(function () {
-  angular.module("mainApp").directive("caValue", function () {
-    return {
-      link: function(scope, element, attrs) {
-        scope[attrs.ngModel] = attrs.value || "";
-        scope.$watch(attrs.ngModel, function (val) {
-          element.attr("value", val);
-        });
-      }
-    }
-  });
-}());
 
 (function () {
   angular.module("mainApp").controller("GroupsListController", function (RestApi, UserFactory, $uibModal) {
