@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing Cards
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var _ = require('lodash');
 
 module.exports = {
 	index: function (req, res) {
@@ -39,9 +40,18 @@ module.exports = {
       hSystem: req.param('hSystem'),
       kSystem: req.param('kSystem')
     };
-    Home.update(homeId, updateObj).exec(function (err, home) {
-      if (err) return res.send(500);
-      return res.json(home);
+    Home.findOne(homeId).exec(function (err, home) {
+        if (err) return res.send(500);
+        if (!_.isEqual(updateObj.status, home.status)
+            || !_.isEqual(updateObj.temperature, home.temperature)
+            || !_.isEqual(updateObj.hSystem, home.hSystem)
+            || !_.isEqual(updateObj.kSystem, home.kSystem)) {
+
+            Home.update(homeId, updateObj).exec(function (err) {
+              if (err) return res.send(500);
+              return res.json(home);
+            });
+        }
     });
   }
 };

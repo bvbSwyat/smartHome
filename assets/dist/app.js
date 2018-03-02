@@ -381,7 +381,7 @@
 
 
   angular.module("mainApp")
-    .constant("UrlsPath", {api: "http://stok.if.ua/"}); //http://stok.if.ua/  http://localhost:1337/
+    .constant("UrlsPath", {api: "http://localhost:1337/"}); //http://stok.if.ua/  http://localhost:1337/
 
 
 })();

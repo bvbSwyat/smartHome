@@ -118,3 +118,4 @@ nbproject
 .node_history
 /public/dist/
 /assets/dist/
+package-lock.json
